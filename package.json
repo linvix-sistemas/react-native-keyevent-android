@@ -1,6 +1,6 @@
 {
   "name": "@linvix-sistemas/react-native-keyevent-android",
-  "version": "1.0.3",
+  "version": "1.0.0",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -35,9 +35,9 @@
   "keywords": [
     "react-native",
     "android",
-    "tectoy",
-    "sunmi",
-    "automacao"
+    "keyboard",
+    "keyboard-event",
+    "event"
   ],
   "repository": "https://github.com/linvix-sistemas/react-native-keyevent-android",
   "author": "Cristiano Cruz <cristiano@linvix.com.br> (https://github.com/cristiano-linvix)",
