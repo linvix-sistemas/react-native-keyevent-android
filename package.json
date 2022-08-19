@@ -1,6 +1,6 @@
 {
   "name": "@linvix-sistemas/react-native-keyevent-android",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Pacote para detecção das teclas pressionadas no android, em dispositivos externos, seja teclado externo ou leitor de código de barras.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
