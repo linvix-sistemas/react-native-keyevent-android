@@ -3,11 +3,7 @@ package com.reactnativekeyeventandroid;
 import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.bridge.WritableNativeMap;
@@ -34,7 +30,7 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
   }
 
   public KeyEventModule getInstance() {
-    return this.instance;
+    return instance;
   }
 
   public void onKeyDownEvent(int keyCode, KeyEvent keyEvent) {
