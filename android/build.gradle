@@ -137,6 +137,6 @@ if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
     libraryName = "Keyevent-android"
-    codegenJavaPackageName = "com.reactnativekeyevent-android"
+    codegenJavaPackageName = "com.reactnativekeyeventandroid"
   }
 }

@@ -19,22 +19,28 @@ import com.facebook.react.modules.core.DeviceEventManagerModule;
 public class KeyEventModule extends ReactContextBaseJavaModule {
   public static final String NAME = "KeyEventModule";
 
+  private static KeyEventModule instance = null;
+
   public ReactApplicationContext context;
 
-  private DeviceEventManagerModule.RCTDeviceEventEmitter mJSModule = null;
-
-  private static KeyEventModule instance = null;
+  public static KeyEventModule InitModule(ReactApplicationContext reactContext) {
+    instance = new KeyEventModule(reactContext);
+    return instance;
+  }
 
   public KeyEventModule(ReactApplicationContext context) {
     super(context);
     this.context = context;
   }
 
+  public KeyEventModule getInstance() {
+    return this.instance;
+  }
+
   public void onKeyDownEvent(int keyCode, KeyEvent keyEvent) {
     if (!this.context.hasActiveReactInstance()) {
       return;
     }
-
     SendEvent("onKeyDown", ConfigureJSResponse(keyCode, keyEvent, null));
   }
 
@@ -42,7 +48,6 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     if (!this.context.hasActiveReactInstance()) {
       return;
     }
-
     SendEvent("onKeyUp", ConfigureJSResponse(keyCode, keyEvent, null));
   }
 
@@ -50,17 +55,11 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     if (!this.context.hasActiveReactInstance()) {
       return;
     }
-
     SendEvent("onKeyMultiple", ConfigureJSResponse(keyCode, keyEvent, repeatCount));
   }
 
   /**
    * Configura a resposta para o js.
-   *
-   * @param keyCode
-   * @param keyEvent
-   * @param repeatCount
-   * @return
    */
   private WritableMap ConfigureJSResponse(int keyCode, KeyEvent keyEvent, Integer repeatCount) {
     WritableMap params = new WritableNativeMap();
@@ -87,12 +86,8 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     return params;
   }
 
-
   /**
    * Envia o evento para o javascript.
-   *
-   * @param eventName
-   * @param params
    */
   private void SendEvent(
     String eventName,
