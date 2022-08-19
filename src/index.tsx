@@ -1,11 +1,25 @@
 import { DeviceEventEmitter, EmitterSubscription } from 'react-native';
 
+type KeyUpDownType = {
+  pressedKey: string;
+  action: number;
+  keyCode: number;
+};
+
+type MultipleKeyType = {
+  pressedKey: string;
+  action: number;
+  keyCode: number;
+  characters?: number;
+  repeatcount?: number;
+};
+
 class KeyEventAndroid {
   listenerKeyUp: EmitterSubscription | undefined;
   listenerKeyDown: EmitterSubscription | undefined;
   listenerKeyMultiple: EmitterSubscription | undefined;
 
-  onKeyDownListener(callback: (ev: any) => void) {
+  onKeyDownListener(callback: (ev: KeyUpDownType) => void) {
     this.removeKeyDownListener();
     this.listenerKeyDown = DeviceEventEmitter.addListener(
       'onKeyDown',
@@ -20,7 +34,7 @@ class KeyEventAndroid {
     }
   }
 
-  onKeyUpListener(callback: (ev: any) => void) {
+  onKeyUpListener(callback: (ev: KeyUpDownType) => void) {
     this.removeKeyUpListener();
     this.listenerKeyUp = DeviceEventEmitter.addListener('onKeyUp', callback);
   }
@@ -32,7 +46,7 @@ class KeyEventAndroid {
     }
   }
 
-  onKeyMultipleListener(callback: (ev: any) => void) {
+  onKeyMultipleListener(callback: (ev: MultipleKeyType) => void) {
     this.removeKeyMultipleListener();
     this.listenerKeyMultiple = DeviceEventEmitter.addListener(
       'onKeyMultiple',
