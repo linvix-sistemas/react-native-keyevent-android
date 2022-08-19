@@ -5,7 +5,7 @@ class KeyEventAndroid {
   listenerKeyDown: EmitterSubscription | undefined;
   listenerKeyMultiple: EmitterSubscription | undefined;
 
-  onKeyDownListener(callback: () => void) {
+  onKeyDownListener(callback: (ev: any) => void) {
     this.removeKeyDownListener();
     this.listenerKeyDown = DeviceEventEmitter.addListener(
       'onKeyDown',
@@ -20,7 +20,7 @@ class KeyEventAndroid {
     }
   }
 
-  onKeyUpListener(callback: () => void) {
+  onKeyUpListener(callback: (ev: any) => void) {
     this.removeKeyUpListener();
     this.listenerKeyUp = DeviceEventEmitter.addListener('onKeyUp', callback);
   }
@@ -32,7 +32,7 @@ class KeyEventAndroid {
     }
   }
 
-  onKeyMultipleListener(callback: () => void) {
+  onKeyMultipleListener(callback: (ev: any) => void) {
     this.removeKeyMultipleListener();
     this.listenerKeyMultiple = DeviceEventEmitter.addListener(
       'onKeyMultiple',
