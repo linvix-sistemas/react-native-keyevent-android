@@ -1,10 +1,11 @@
-import { DeviceEventEmitter } from 'react-native';
+import { DeviceEventEmitter, EmitterSubscription } from 'react-native';
 
 class KeyEventAndroid {
-  listenerKeyUp = null;
-  listenerKeyDown = null;
+  listenerKeyUp: EmitterSubscription | undefined;
+  listenerKeyDown: EmitterSubscription | undefined;
+  listenerKeyMultiple: EmitterSubscription | undefined;
 
-  onKeyDownListener(callback) {
+  onKeyDownListener(callback: () => void) {
     this.removeKeyDownListener();
     this.listenerKeyDown = DeviceEventEmitter.addListener(
       'onKeyDown',
@@ -15,11 +16,11 @@ class KeyEventAndroid {
   removeKeyDownListener() {
     if (this.listenerKeyDown) {
       this.listenerKeyDown.remove();
-      this.listenerKeyDown = null;
+      this.listenerKeyDown = undefined;
     }
   }
 
-  onKeyUpListener(callback) {
+  onKeyUpListener(callback: () => void) {
     this.removeKeyUpListener();
     this.listenerKeyUp = DeviceEventEmitter.addListener('onKeyUp', callback);
   }
@@ -27,11 +28,11 @@ class KeyEventAndroid {
   removeKeyUpListener() {
     if (this.listenerKeyUp) {
       this.listenerKeyUp.remove();
-      this.listenerKeyUp = null;
+      this.listenerKeyUp = undefined;
     }
   }
 
-  onKeyMultipleListener(callback) {
+  onKeyMultipleListener(callback: () => void) {
     this.removeKeyMultipleListener();
     this.listenerKeyMultiple = DeviceEventEmitter.addListener(
       'onKeyMultiple',
@@ -42,7 +43,7 @@ class KeyEventAndroid {
   removeKeyMultipleListener() {
     if (this.listenerKeyMultiple) {
       this.listenerKeyMultiple.remove();
-      this.listenerKeyMultiple = null;
+      this.listenerKeyMultiple = undefined;
     }
   }
 }
