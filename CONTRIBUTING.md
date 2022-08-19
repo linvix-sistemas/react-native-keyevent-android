@@ -53,7 +53,7 @@ yarn test
 ```
 To edit the Objective-C files, open `example/ios/Keyevent-androidExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > @linvix-sistemas/react-native-keyevent-android`.
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativekeyevent-android` under `Android`.
+To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativekeyeventandroid` under `Android`.
 ### Commit message convention
 
 We follow the [conventional commits specification](https://www.conventionalcommits.org/en) for our commit messages:

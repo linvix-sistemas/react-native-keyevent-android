@@ -1,11 +1,15 @@
 import { DeviceEventEmitter } from 'react-native';
 
 class KeyEvent {
+  listenerKeyUp = null;
   listenerKeyDown = null;
 
-  onKeyDownListener(cb) {
+  onKeyDownListener(callback) {
     this.removeKeyDownListener();
-    this.listenerKeyDown = DeviceEventEmitter.addListener('onKeyDown', cb);
+    this.listenerKeyDown = DeviceEventEmitter.addListener(
+      'onKeyDown',
+      callback
+    );
   }
 
   removeKeyDownListener() {
@@ -15,9 +19,9 @@ class KeyEvent {
     }
   }
 
-  onKeyUpListener(cb) {
+  onKeyUpListener(callback) {
     this.removeKeyUpListener();
-    this.listenerKeyUp = DeviceEventEmitter.addListener('onKeyUp', cb);
+    this.listenerKeyUp = DeviceEventEmitter.addListener('onKeyUp', callback);
   }
 
   removeKeyUpListener() {
@@ -27,11 +31,11 @@ class KeyEvent {
     }
   }
 
-  onKeyMultipleListener(cb) {
+  onKeyMultipleListener(callback) {
     this.removeKeyMultipleListener();
     this.listenerKeyMultiple = DeviceEventEmitter.addListener(
       'onKeyMultiple',
-      cb
+      callback
     );
   }
 

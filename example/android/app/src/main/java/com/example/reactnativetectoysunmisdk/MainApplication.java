@@ -1,4 +1,4 @@
-package com.example.reactnativekeyevent-android;
+package com.example.reactnativekeyeventandroid;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,7 +9,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.example.reactnativekeyevent-android.newarchitecture.MainApplicationReactNativeHost;
+import com.example.reactnativekeyeventandroid.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
@@ -73,7 +73,7 @@ public class MainApplication extends Application implements ReactApplication {
          We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.example.reactnativekeyevent-android.ReactNativeFlipper");
+        Class<?> aClass = Class.forName("com.example.reactnativekeyeventandroid.ReactNativeFlipper");
         aClass
             .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
             .invoke(null, context, reactInstanceManager);

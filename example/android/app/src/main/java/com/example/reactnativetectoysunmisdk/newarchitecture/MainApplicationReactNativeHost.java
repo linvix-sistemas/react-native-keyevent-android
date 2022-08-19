@@ -1,4 +1,4 @@
-package com.example.reactnativekeyevent-android.newarchitecture;
+package com.example.reactnativekeyeventandroid.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.example.reactnativekeyevent-android.BuildConfig;
-import com.example.reactnativekeyevent-android.newarchitecture.components.MainComponentsRegistry;
-import com.example.reactnativekeyevent-android.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.example.reactnativekeyeventandroid.BuildConfig;
+import com.example.reactnativekeyeventandroid.newarchitecture.components.MainComponentsRegistry;
+import com.example.reactnativekeyeventandroid.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

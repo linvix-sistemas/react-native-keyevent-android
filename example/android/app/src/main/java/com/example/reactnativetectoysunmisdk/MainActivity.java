@@ -1,4 +1,4 @@
-package com.example.reactnativekeyevent-android;
+package com.example.reactnativekeyeventandroid;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
