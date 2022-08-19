@@ -1,18 +1,5 @@
 # @linvix-sistemas/react-native-keyevent-android
-Wrapper para comunicação com a SDK da Sunmi/Tectoy para React Native.
-
-## Atenção
-Este pacote foi desenvolvido para facilitar a integração com o SDK da Sunmi/Tectoy para comunicar com os produtos/equipamentos da empresa.
-
-Verifique a documentação da Sunmi para maior endentimento das funções e possíveis implementações adicionais.
-
-Esta biblioteca não está completa com todos os recursos disponíveis da sunmi/tectoy, caso você consiga implementar novas funções, contribua com o pacote e torne ele mais útil para todos os que utilizam.
-
----
-
-## Testado nos equipamentos
-#### [D2S Combo](https://tectoyautomacao.com.br/produtos/terminais-pdv/pos-desktop-d2s-combo) - Possuí gaveta
-#### [T2 Mini](https://tectoyautomacao.com.br/produtos/terminais-pdv/pdv-desktop-t2-mini) - Sem leitor câmera integrada
+Pacote para detectar as teclas pressionadas no teclado no android.
 
 ---
 
@@ -25,74 +12,79 @@ npm install @linvix-sistemas/react-native-keyevent-android
 ```sh
 yarn add @linvix-sistemas/react-native-keyevent-android
 ```
+# Configuração
+Adicione/mescle as seguintes linhas no arquivo: MainActivity.java
+
+```java
+// adicione as linha nos imports
+import android.view.KeyEvent;
+import com.reactnativekeyeventandroid.KeyEventModule;
+
+public class MainActivity extends ReactActivity {
+
+      // A. Impedir vários eventos ao pressionar o botão por muito tempo
+      //        if (event.getRepeatCount() == 0) {
+      //            KeyEventModule.getInstance().onKeyDownEvent(keyCode, event);
+      //        }
+      //
+      // B. Se vários eventos devem ser disparados quando o botão é pressionado e mantido.
+      //        KeyEventModule.getInstance().onKeyDownEvent(keyCode, event);
+      @Override
+      public boolean onKeyDown(int keyCode, KeyEvent event) {
+        KeyEventModule.getInstance().onKeyDownEvent(keyCode, event);
+        return super.onKeyDown(keyCode, event);
+      }
+
+      @Override
+      public boolean onKeyUp(int keyCode, KeyEvent event) {
+        KeyEventModule.getInstance().onKeyUpEvent(keyCode, event);
+        return super.onKeyUp(keyCode, event);
+      }
+
+      @Override
+      public boolean onKeyMultiple(int keyCode, int repeatCount, KeyEvent event) {
+          KeyEventModule.getInstance().onKeyMultipleEvent(keyCode, repeatCount, event);
+          return super.onKeyMultiple(keyCode, repeatCount, event);
+      }
+      ......
+
+    }
+```
+
 ## Uso
 
 ```js
-import NativeModuleTectToySunmiSDK, { TectoyLCDFuncaoEnum, TectoyLCDMultiTextoType } from '@linvix-sistemas/react-native-keyevent-android';
-```
+import KeyEventAndroid from '@linvix-sistemas/react-native-keyevent-android';
 
-Veja a pasta [example](example/src/App.tsx) para verificar como utilizar.
+useEffect(()=> {
+    KeyEventAndroid.onKeyDownListener((ev) => {
+      console.log(`KeyCode: ${ev.keyCode}`);
+      console.log(`Action: ${ev.action}`);
+      console.log(`Key: ${ev.pressedKey}`);
+    });
 
----
-## [Types](src/types/tectoysunmi-types.ts) - [Enums](src/enums/keyevent-android-enum.ts) 
----
+    // if you want to react to keyUp
+    KeyEventAndroid.onKeyUpListener((ev) => {
+      console.log(`KeyCode: ${ev.keyCode}`);
+      console.log(`Action: ${ev.action}`);
+      console.log(`Key: ${ev.pressedKey}`);
+    });
 
-## Metódos - Impressora
-Lista de métodos expostos para utlização com a impressora.
+    // if you want to react to keyMultiple
+    KeyEventAndroid.onKeyMultipleListener((ev) => {
+      console.log(`KeyCode: ${ev.keyCode}`);
+      console.log(`Action: ${ev.action}`);
+      console.log(`Characters: ${ev.characters}`);
+    });
 
-### ObterStatus
-```ts
-// Lembre-se de que o status da impressora pode variar dependendo do dispositivo utilizado pela tectoy, sempre verifique o manual.
-await NativeModuleTectToySunmiSDK.impressora.ObterStatus();
+    // remove os listeners
+    return ()=> {
+        KeyEventAndroid.removeKeyDownListener();
+        KeyEventAndroid.removeKeyUpListener();
+        KeyEventAndroid.removeKeyMultipleListener();
+    }
+}, []);
 ```
-### ImprimirTexto
-```ts
-await NativeModuleTectToySunmiSDK.impressora.ImprimirTexto(texto: string);
-```
-### ImprimirQRCode - [ImprimirQRCodeType](src/types/tectoysunmi-types.ts#L26)
-```ts
-await NativeModuleTectToySunmiSDK.impressora.ImprimirQRCode(data: ImprimirQRCodeType);
-```
-### AvancarLinha
-```ts
-await NativeModuleTectToySunmiSDK.impressora.AvancarLinha(numero_linhas = 5);
-```
-### Avancar3Linhas
-```ts
-await NativeModuleTectToySunmiSDK.impressora.Avancar3Linhas();
-```
----
-
-## Metódos - LCD
-Lista de métodos expostos para utlização com o LCD.
-
-### ControlarLCD - [TectoyLCDFuncaoEnum](src/enums/keyevent-android-enum.ts#L1)
-```ts
-// Função utilizada para controlar o display lcd disponível em algúns modelos da tectoy/sunmi.
-// TectoyLCDFuncaoEnum.INICIALIZAR
-// TectoyLCDFuncaoEnum.LIGAR_LCD
-// TectoyLCDFuncaoEnum.DESLIGAR_LCD
-// TectoyLCDFuncaoEnum.LIMPAR_TELA
-await NativeModuleTectToySunmiSDK.lcd.ControlarLCD(funcao: TectoyLCDFuncaoEnum);
-```
-### EnviarTexto
-```ts
-await NativeModuleTectToySunmiSDK.lcd.EnviarTexto(texto: string);
-```
-### EnviarTextos
-```ts
-await NativeModuleTectToySunmiSDK.lcd.EnviarTextos(data: TectoyLCDMultiTextoType);
-```
----
-
-## Metódos - Gavega
-Lista de métodos expostos para utlização com a gaveta.
-
-### AbrirGaveta
-```ts
-await NativeModuleTectToySunmiSDK.gaveta.AbrirGaveta();
-```
----
 
 ## Contribuindo
 Fique a vontade para fazer contribuições no projeto, ele é um projeto que a Linvix Sistemas está utilizando em seus projetos e achou conveniente disponibilizar para a comunidade.
