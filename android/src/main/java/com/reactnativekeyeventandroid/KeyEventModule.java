@@ -29,7 +29,7 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     this.context = context;
   }
 
-  public KeyEventModule getInstance() {
+  public static KeyEventModule getInstance() {
     return instance;
   }
 

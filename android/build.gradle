@@ -125,18 +125,12 @@ repositories {
 dependencies {
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
-
-  // Necessário para gerar BarCode
-  implementation files('libs/core-3.3.0.jar')
-
-  // Obrigatorio para usar a class SunmiPrintHelper
-  implementation 'com.sunmi:printerlibrary:1.0.19'
 }
 
 if (isNewArchitectureEnabled()) {
   react {
     jsRootDir = file("../src/")
-    libraryName = "Keyevent-android"
+    libraryName = "ReactNativeKeyEventAndroid"
     codegenJavaPackageName = "com.reactnativekeyeventandroid"
   }
 }
