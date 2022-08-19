@@ -1,6 +1,6 @@
 import { DeviceEventEmitter } from 'react-native';
 
-class KeyEvent {
+class KeyEventAndroid {
   listenerKeyUp = null;
   listenerKeyDown = null;
 
@@ -47,4 +47,4 @@ class KeyEvent {
   }
 }
 
-export default new KeyEvent();
+export default new KeyEventAndroid();
