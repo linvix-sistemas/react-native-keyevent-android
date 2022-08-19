@@ -1,0 +1,154 @@
+{
+  "name": "@linvix-sistemas/react-native-keyevent-android",
+  "version": "1.0.3",
+  "description": "test",
+  "main": "lib/commonjs/index",
+  "module": "lib/module/index",
+  "types": "lib/typescript/index.d.ts",
+  "react-native": "src/index",
+  "source": "src/index",
+  "files": [
+    "src",
+    "lib",
+    "android",
+    "ios",
+    "cpp",
+    "react-native-keyevent-android.podspec",
+    "!lib/typescript/example",
+    "!android/build",
+    "!ios/build",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__"
+  ],
+  "scripts": {
+    "test": "jest",
+    "typescript": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\"",
+    "prepare": "bob build",
+    "release": "yarn prepare && release-it && yarn publish",
+    "example": "yarn --cwd example",
+    "bootstrap": "yarn example && yarn",
+    "prepublish": "yarn prepare && yarn install",
+    "publish": "yarn npm publish --access public"
+  },
+  "keywords": [
+    "react-native",
+    "android",
+    "tectoy",
+    "sunmi",
+    "automacao"
+  ],
+  "repository": "https://github.com/linvix-sistemas/react-native-keyevent-android",
+  "author": "Cristiano Cruz <cristiano@linvix.com.br> (https://github.com/cristiano-linvix)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/linvix-sistemas/react-native-keyevent-android/issues"
+  },
+  "homepage": "https://github.com/linvix-sistemas/react-native-keyevent-android#readme",
+  "devDependencies": {
+    "@arkweid/lefthook": "^0.7.7",
+    "@babel/eslint-parser": "^7.18.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@react-native-community/eslint-config": "^3.0.2",
+    "@release-it/conventional-changelog": "^5.0.0",
+    "@types/jest": "^28.1.2",
+    "@types/react": "~17.0.21",
+    "@types/react-native": "0.68.0",
+    "commitlint": "^17.0.2",
+    "eslint": "^8.4.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^28.1.1",
+    "pod-install": "^0.1.0",
+    "prettier": "^2.0.5",
+    "react": "17.0.2",
+    "react-native": "0.68.2",
+    "react-native-builder-bob": "^0.18.3",
+    "release-it": "^15.0.0",
+    "typescript": "^4.5.2"
+  },
+  "resolutions": {
+    "@types/react": "17.0.21"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/example/node_modules",
+      "<rootDir>/lib/"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "release ${version}",
+      "tagName": "v${version}"
+    },
+    "npm": {
+      "publish": false
+    },
+    "github": {
+      "release": true
+    },
+    "plugins": {
+      "@release-it/conventional-changelog": {
+        "preset": "angular"
+      }
+    }
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@babel/eslint-parser",
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "off",
+      "no-unused-vars": "off",
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
+    ]
+  }
+}
