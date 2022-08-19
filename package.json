@@ -23,11 +23,9 @@
   ],
   "scripts": {
     "test": "jest",
-    "typescript": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "yarn prepare && release-it && yarn publish",
-    "example": "yarn --cwd example",
     "bootstrap": "yarn example && yarn",
     "prepublish": "yarn prepare && yarn install",
     "publish": "yarn npm publish --access public"
