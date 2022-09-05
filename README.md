@@ -85,11 +85,19 @@ useEffect(()=> {
       console.log(`Characters: ${ev.characters}`);
     });
 
+    // if you want to react to keyMultiple
+    KeyEventAndroid.onDispatchKeyListener((ev) => {
+      console.log(`KeyCode: ${ev.keyCode}`);
+      console.log(`Action: ${ev.action}`);
+      console.log(`Characters: ${ev.characters}`);
+    });
+
     // remove os listeners
     return ()=> {
         KeyEventAndroid.removeKeyDownListener();
         KeyEventAndroid.removeKeyUpListener();
         KeyEventAndroid.removeKeyMultipleListener();
+        KeyEventAndroid.removeDispatchKeyListener();
     }
 }, []);
 ```
