@@ -19,6 +19,7 @@ class KeyEventAndroid {
   listenerKeyUp: EmitterSubscription | undefined;
   listenerKeyDown: EmitterSubscription | undefined;
   listenerKeyMultiple: EmitterSubscription | undefined;
+  listenerDispatchKey: EmitterSubscription | undefined;
 
   onKeyDownListener(callback: (ev: KeyUpDownType) => void) {
     this.removeKeyDownListener();
@@ -59,6 +60,21 @@ class KeyEventAndroid {
     if (this.listenerKeyMultiple) {
       this.listenerKeyMultiple.remove();
       this.listenerKeyMultiple = undefined;
+    }
+  }
+
+  onDispatchKeyListener(callback: (ev: KeyUpDownType) => void) {
+    this.removeDispatchKeyListener();
+    this.listenerDispatchKey = DeviceEventEmitter.addListener(
+      'onDispatchKey',
+      callback
+    );
+  }
+
+  removeDispatchKeyListener() {
+    if (this.listenerDispatchKey) {
+      this.listenerDispatchKey.remove();
+      this.listenerDispatchKey = undefined;
     }
   }
 }

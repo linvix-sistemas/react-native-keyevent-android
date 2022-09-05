@@ -46,6 +46,12 @@ public class MainActivity extends ReactActivity {
           KeyEventModule.getInstance().onKeyMultipleEvent(keyCode, repeatCount, event);
           return super.onKeyMultiple(keyCode, repeatCount, event);
       }
+
+      @Override
+      public boolean dispatchKeyEvent(KeyEvent event) {
+          KeyEventModule.getInstance().onDispatchKeyEvent(event);
+          return super.dispatchKeyEvent(event);
+      }
       ......
 
     }

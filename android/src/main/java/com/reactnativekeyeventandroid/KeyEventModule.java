@@ -55,6 +55,13 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     SendEvent("onKeyMultiple", ConfigureJSResponse(keyCode, keyEvent, repeatCount));
   }
 
+  public void onDispatchKeyEvent(KeyEvent keyEvent) {
+    if (!this.context.hasActiveReactInstance()) {
+      return;
+    }
+    SendEvent("onDispatchKey", ConfigureJSResponse(keyEvent.getKeyCode(), keyEvent, null));
+  }
+
   /**
    * Configura a resposta para o js.
    */
