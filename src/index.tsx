@@ -4,6 +4,7 @@ type KeyUpDownType = {
   pressedKey: string;
   action: number;
   keyCode: number;
+  enterPressed: boolean;
 };
 
 type MultipleKeyType = {

@@ -61,6 +61,7 @@ useEffect(()=> {
       console.log(`KeyCode: ${ev.keyCode}`);
       console.log(`Action: ${ev.action}`);
       console.log(`Key: ${ev.pressedKey}`);
+      console.log(`Enter?: ${ev.enterPressed}`);
     });
 
     // if you want to react to keyUp
@@ -68,6 +69,7 @@ useEffect(()=> {
       console.log(`KeyCode: ${ev.keyCode}`);
       console.log(`Action: ${ev.action}`);
       console.log(`Key: ${ev.pressedKey}`);
+      console.log(`Enter?: ${ev.enterPressed}`);
     });
 
     // if you want to react to keyMultiple

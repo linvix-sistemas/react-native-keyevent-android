@@ -3,6 +3,7 @@ package com.reactnativekeyeventandroid;
 import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.WritableMap;
@@ -62,6 +63,9 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     int action = keyEvent.getAction();
     char pressedKey = (char) keyEvent.getUnicodeChar();
 
+    // verifica se o enter foi pressionado
+    boolean enterPressed = keyCode == KeyEvent.KEYCODE_ENTER || keyCode == KeyEvent.KEYCODE_NUMPAD_ENTER;
+
     // localiza as multi teclas pressionadas e monta a array de teclas
     if (keyEvent.getAction() == KeyEvent.ACTION_MULTIPLE && keyCode == KeyEvent.KEYCODE_UNKNOWN) {
       String chars = keyEvent.getCharacters();
@@ -78,6 +82,7 @@ public class KeyEventModule extends ReactContextBaseJavaModule {
     params.putInt("keyCode", keyCode);
     params.putInt("action", action);
     params.putString("pressedKey", String.valueOf(pressedKey));
+    params.putBoolean("enterPressed", enterPressed);
 
     return params;
   }
