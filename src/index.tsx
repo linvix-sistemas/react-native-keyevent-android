@@ -20,6 +20,7 @@ class KeyEventAndroid {
   listenerKeyDown: EmitterSubscription | undefined;
   listenerKeyMultiple: EmitterSubscription | undefined;
   listenerDispatchKey: EmitterSubscription | undefined;
+  listenerBarcodeRead: EmitterSubscription | undefined;
 
   onKeyDownListener(callback: (ev: KeyUpDownType) => void) {
     this.removeKeyDownListener();
@@ -75,6 +76,21 @@ class KeyEventAndroid {
     if (this.listenerDispatchKey) {
       this.listenerDispatchKey.remove();
       this.listenerDispatchKey = undefined;
+    }
+  }
+
+  onDispatchBarcodeReadListener(callback: (barcode: string) => void) {
+    this.removeDispatchBarcodeReadListener();
+    this.listenerBarcodeRead = DeviceEventEmitter.addListener(
+      'onDispatchBarcodeRead',
+      callback
+    );
+  }
+
+  removeDispatchBarcodeReadListener() {
+    if (this.listenerBarcodeRead) {
+      this.listenerBarcodeRead.remove();
+      this.listenerBarcodeRead = undefined;
     }
   }
 }
