@@ -15,7 +15,7 @@ type MultipleKeyType = {
   repeatcount?: number;
 };
 
-class KeyEventAndroid {
+class KeyEventAndroidClass {
   onKeyDownListener(callback: (ev: KeyUpDownType) => void) {
     const listener = DeviceEventEmitter.addListener('onKeyDown', callback);
     return () => {
@@ -55,4 +55,6 @@ class KeyEventAndroid {
   }
 }
 
-export default new KeyEventAndroid();
+const KeyEventAndroid = new KeyEventAndroidClass();
+
+export default KeyEventAndroid;
