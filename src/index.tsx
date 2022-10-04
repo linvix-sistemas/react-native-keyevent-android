@@ -1,4 +1,4 @@
-import { DeviceEventEmitter, EmitterSubscription } from 'react-native';
+import { DeviceEventEmitter } from 'react-native';
 
 type KeyUpDownType = {
   pressedKey: string;
@@ -16,82 +16,42 @@ type MultipleKeyType = {
 };
 
 class KeyEventAndroid {
-  listenerKeyUp: EmitterSubscription | undefined;
-  listenerKeyDown: EmitterSubscription | undefined;
-  listenerKeyMultiple: EmitterSubscription | undefined;
-  listenerDispatchKey: EmitterSubscription | undefined;
-  listenerBarcodeRead: EmitterSubscription | undefined;
-
   onKeyDownListener(callback: (ev: KeyUpDownType) => void) {
-    this.removeKeyDownListener();
-    this.listenerKeyDown = DeviceEventEmitter.addListener(
-      'onKeyDown',
-      callback
-    );
-  }
-
-  removeKeyDownListener() {
-    if (this.listenerKeyDown) {
-      this.listenerKeyDown.remove();
-      this.listenerKeyDown = undefined;
-    }
+    const listener = DeviceEventEmitter.addListener('onKeyDown', callback);
+    return () => {
+      listener?.remove();
+    };
   }
 
   onKeyUpListener(callback: (ev: KeyUpDownType) => void) {
-    this.removeKeyUpListener();
-    this.listenerKeyUp = DeviceEventEmitter.addListener('onKeyUp', callback);
-  }
-
-  removeKeyUpListener() {
-    if (this.listenerKeyUp) {
-      this.listenerKeyUp.remove();
-      this.listenerKeyUp = undefined;
-    }
+    const listener = DeviceEventEmitter.addListener('onKeyUp', callback);
+    return () => {
+      listener?.remove();
+    };
   }
 
   onKeyMultipleListener(callback: (ev: MultipleKeyType) => void) {
-    this.removeKeyMultipleListener();
-    this.listenerKeyMultiple = DeviceEventEmitter.addListener(
-      'onKeyMultiple',
-      callback
-    );
-  }
-
-  removeKeyMultipleListener() {
-    if (this.listenerKeyMultiple) {
-      this.listenerKeyMultiple.remove();
-      this.listenerKeyMultiple = undefined;
-    }
+    const listener = DeviceEventEmitter.addListener('onKeyMultiple', callback);
+    return () => {
+      listener?.remove();
+    };
   }
 
   onDispatchKeyListener(callback: (ev: KeyUpDownType) => void) {
-    this.removeDispatchKeyListener();
-    this.listenerDispatchKey = DeviceEventEmitter.addListener(
-      'onDispatchKey',
-      callback
-    );
-  }
-
-  removeDispatchKeyListener() {
-    if (this.listenerDispatchKey) {
-      this.listenerDispatchKey.remove();
-      this.listenerDispatchKey = undefined;
-    }
+    const listener = DeviceEventEmitter.addListener('onDispatchKey', callback);
+    return () => {
+      listener?.remove();
+    };
   }
 
   onDispatchBarcodeReadListener(callback: (barcode: string) => void) {
-    this.removeDispatchBarcodeReadListener();
-    this.listenerBarcodeRead = DeviceEventEmitter.addListener(
+    const listener = DeviceEventEmitter.addListener(
       'onDispatchBarcodeRead',
       callback
     );
-  }
-
-  removeDispatchBarcodeReadListener() {
-    if (this.listenerBarcodeRead) {
-      this.listenerBarcodeRead.remove();
-      this.listenerBarcodeRead = undefined;
-    }
+    return () => {
+      listener?.remove();
+    };
   }
 }
 
