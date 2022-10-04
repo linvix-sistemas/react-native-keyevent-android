@@ -63,7 +63,7 @@ public class MainActivity extends ReactActivity {
 import KeyEventAndroid from '@linvix-sistemas/react-native-keyevent-android';
 
 useEffect(()=> {
-    KeyEventAndroid.onKeyDownListener((ev) => {
+    const CleanListenerKeyDown = KeyEventAndroid.onKeyDownListener((ev) => {
       console.log(`KeyCode: ${ev.keyCode}`);
       console.log(`Action: ${ev.action}`);
       console.log(`Key: ${ev.pressedKey}`);
@@ -71,7 +71,7 @@ useEffect(()=> {
     });
 
     // if you want to react to keyUp
-    KeyEventAndroid.onKeyUpListener((ev) => {
+    const CleanListenerKeyUp = KeyEventAndroid.onKeyUpListener((ev) => {
       console.log(`KeyCode: ${ev.keyCode}`);
       console.log(`Action: ${ev.action}`);
       console.log(`Key: ${ev.pressedKey}`);
@@ -79,14 +79,14 @@ useEffect(()=> {
     });
 
     // if you want to react to keyMultiple
-    KeyEventAndroid.onKeyMultipleListener((ev) => {
+    const CleanListenerKeyMultiple = KeyEventAndroid.onKeyMultipleListener((ev) => {
       console.log(`KeyCode: ${ev.keyCode}`);
       console.log(`Action: ${ev.action}`);
       console.log(`Characters: ${ev.characters}`);
     });
 
     // if you want to react to keyMultiple
-    KeyEventAndroid.onDispatchKeyListener((ev) => {
+    const CleanListenerDispatchKey = KeyEventAndroid.onDispatchKeyListener((ev) => {
       console.log(`KeyCode: ${ev.keyCode}`);
       console.log(`Action: ${ev.action}`);
       console.log(`Characters: ${ev.characters}`);
@@ -94,10 +94,10 @@ useEffect(()=> {
 
     // remove os listeners
     return ()=> {
-        KeyEventAndroid.removeKeyDownListener();
-        KeyEventAndroid.removeKeyUpListener();
-        KeyEventAndroid.removeKeyMultipleListener();
-        KeyEventAndroid.removeDispatchKeyListener();
+        CleanListenerKeyDown();
+        CleanListenerKeyUp();
+        CleanListenerKeyMultiple();
+        CleanListenerDispatchKey();
     }
 }, []);
 ```
